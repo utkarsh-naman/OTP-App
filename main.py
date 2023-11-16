@@ -31,7 +31,6 @@ ScreenManager:
 	HomeScreen:
 	AuthorScreen:
 	Donation:
-	Usage:
 	Donors:
 	More:
 	History:
@@ -46,12 +45,12 @@ ScreenManager:
                     orientation: 'vertical'
                     MDBottomAppBar:
                         MDToolbar:
-                            title: "OTP Generator Utkarsh"
+                            title: "OTPGEN: Utkarsh"
                             left_action_items: [["menu", lambda x: nav.set_state("open")]]
                             icon: 'equal'
                             mode: 'end'
                             type: 'bottom'
-                            on_action_button:app.matex(express)
+                            on_action_button:app.otpgen(express)
                                                                	
                     MDTextField:
                     	id: express
@@ -220,100 +219,6 @@ ScreenManager:
 			app.close_music(root)
 
 
-<Usage>:
-	name:"use"
-	MDFillRoundFlatButton:
-		text:"TIPS"
-		
-		pos_hint: {'center_x': 0.075, 'center_y' : 0.895}
-	Image:
-		source: "assets/images/help.jpg"
-	MDFillRoundFlatButton:
-		text:"Close"
-		
-		pos_hint: {'center_x': 0.5, 'center_y' : 0.04}
-		on_press:
-			root.manager.current='home'
-			app.close_music(root)
-
-
-
-
-<Change>:
-	name: "changes"
-	ScrollView:
-	    MDBoxLayout:
-            md_bg_color: 0,0,0,0
-            radius: [40, 40, 40, 40]
-            ScrollView:
-            	MDList:
-            		OneLineListItem:
-            			text:"Replaced '?' button with '=' button"
-            		TwoLineListItem:
-            			text:"Added Redirect feature"
-            			secondary_text: "tap to view them"
-            			on_press:app.copy_view()
-            		
-            		TwoLineListItem:
-            			text:"Added UI features"
-            			secondary_text: "tap to view them"
-            			on_press:app.ui_view()
-            			
-            		TwoLineListItem:
-            			text:"Changes made in App Drawer"
-            			secondary_text:"tap to view them"
-            			on_press:app.section_changes()
-            			         			
-            		TwoLineListItem:
-            			text:"Added update section"
-            			secondary_text:"with link to the latest apk"
-            			on_press:
-            			    root.manager.current="update"
-            				app.mtupt()
-            			
-            		TwoLineListItem:
-            			text:"Rectified math errors"
-            			secondary_text:"tap to view them"
-            			on_press:
-            				app.errorupt()
-            			
-            			
-            		OneLineListItem:
-            			text:"Added sounds on pop-ups"
-            			
-    MDFillRoundFlatButton:
-    	text:"Close"
-    	
-		pos_hint: {'center_x':0.5, 'center_y' : 0.1}
-		on_press:
-			root.manager.current='home'
-			app.close_music(root)
-
-		
-						
-<Updates>:
-	name: "update"	
-	ScrollView:
-		MDList:
-		    OneLineListItem:
-		    	text:"Check my version"
-		    	on_press:app.myver()
-		    ThreeLineIconListItem:
-			    text:"New Release"
-    	    	secondary_text: "Visit link for the newly released apk."
-		    	tertiary_text: "<Tap to copy link>"
-		    	on_press:webbrowser.open("https://drive.google.com/drive/folders/13NEsclz1rMhXaleFpfHcjPhmgV5ac7Gf")
-	    		IconLeftWidget:
-			    	icon: "history"
-			    	on_press:webbrowser.open("https://drive.google.com/drive/folders/13NEsclz1rMhXaleFpfHcjPhmgV5ac7Gf")
-				
-	MDFillRoundFlatButton:
-		text:"Close"
-		
-		pos_hint: {'center_x': 0.5, 'center_y' : 0.06}
-		on_press:
-			root.manager.current='home'
-			app.close_music(root)
 
 
 
@@ -352,33 +257,7 @@ ScreenManager:
 
 
 
-<YouTube>:
-	name:'yt'
-	
-	ScrollView:
-		MDList:
-			OneLineIconListItem:
-			    text:"YouTube Channel"
-			    on_press: webbrowser.open("https://m.youtube.com/channel/UCTuRkJwD91Yj_8zbtL3uwPQ")
-			    IconLeftWidget:
-			        icon: "youtube"
-                    on_press: webbrowser.open("https://m.youtube.com/channel/UCTuRkJwD91Yj_8zbtL3uwPQ")
-		    OneLineIconListItem:
-			    text:"YouTube Tutorial"
-			    on_press: webbrowser.open("https://youtube.com/playlist?list=PLZchMekN22Un3scfWu74NctnwKjmTN5M4")
-			    IconLeftWidget:
-			        icon: "youtube"
-                    on_press: webbrowser.open("https://youtube.com/playlist?list=PLZchMekN22Un3scfWu74NctnwKjmTN5M4")
-		
-	
-	MDFillRoundFlatButton:
-		text:"Close"
-		
-		pos_hint: {'center_x': 0.5, 'center_y' : 0.06}
-		on_press:
-			root.manager.current='home'
-			app.close_music(root)
-		
+
 		
 <More>:
 	name:'apps'	
@@ -485,26 +364,14 @@ class AuthorScreen(Screen):
 	pass
 class Donation(Screen):
 	pass
-class Usage(Screen):
-	pass
-class Change(Screen):
-	pass
-class Updates(Screen):
-	pass
 class Donors(Screen):
 	pass
-class YouTube(Screen):
-	pass
+
 class More(Screen):
 	pass
 class History(Screen):
 	pass
-class Coder(Screen):
-	pass
-class Python(Screen):
-	pass
-class Java(Screen):
-	pass
+
 class Theme(Screen):
 	pass
 
@@ -513,16 +380,9 @@ sm= ScreenManager()
 sm.add_widget(HomeScreen(name='home'))
 sm.add_widget(AuthorScreen(name='about'))
 sm.add_widget(Donation(name='donate'))
-sm.add_widget(Usage(name='use'))
-sm.add_widget(Change(name='changes'))
-sm.add_widget(Updates(name='update'))
 sm.add_widget(Donors(name='donor'))
-sm.add_widget(YouTube(name='yt'))
 sm.add_widget(More(name='apps'))
 sm.add_widget(History(name='history'))
-sm.add_widget(Coder(name='code'))
-sm.add_widget(Python(name='ttp'))
-sm.add_widget(Python(name='ttj'))
 sm.add_widget(Theme(name='theme'))
 
 class Demo(ScreenManager):
@@ -1306,11 +1166,11 @@ class TTE(MDApp):
         if sound1:
         	sound1.loop= False
         	sound1.play()
-        self.dialog=MDDialog(title="Approximate Result", radius=(50,50,50,50), text="", size_hint=(0.8, 0.5), buttons=[close_button, copy_button])
+        self.dialog=MDDialog(title="GEnerated OTP", radius=(50,50,50,50), text="", size_hint=(0.8, 0.5), buttons=[close_button, copy_button])
         
         self.dialog.open()
         if exp == "":        	
-        	self.dialog.text="Not an expression. Enter one."
+        	self.dialog.text="Not a number. Enter one."
         elif exp=="()":
         	self.dialog.text="0"
         else:
@@ -1378,7 +1238,7 @@ class TTE(MDApp):
 		
 				
 				
-    def matex(self, expd):
+    def otpgen(self, expd):
         if os.path.exists("repos/database/history_database.db"):
             conn = sqlite3.connect('repos/database/history_database.db')
             c = conn.cursor()
